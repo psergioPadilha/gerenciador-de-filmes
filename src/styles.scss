@@ -2,3 +2,42 @@
 
 @import "bootstrap";
 @import "bootstrap-icons";
+
+.app-botao-gradiente {
+  transition: color, box-shadow 200ms ease-in-out;
+  background: linear-gradient(to right, #67023d8d, #3b014791);
+  color: #d756ac;
+
+  &:hover {
+    border-color: #d756ac;
+  }
+}
+
+  .app-icone-porcentagem {
+    position: absolute;
+    bottom: 15%;
+    right: 8%;
+    font-size: 9px;
+  }
+
+  .app-borda-nota-mais-baixa {
+    border: 3px solid transparent;
+    border-top-color: #fe0000;
+  }
+
+  .app-borda-nota-baixa {
+    border: 3px solid transparent;
+    border-top-color: #ff0000;
+    border-right-color: #ff0000;
+  }
+
+  .app-borda-nota-media {
+    border: 3px solid transparent;
+    border-top-color: #ffea00;
+    border-right-color: #ffea00;
+    border-bottom-color: #ffea00;
+  }
+
+  .app-borda-nota-alta {
+    border: 3px solid #0dfc00;
+  }
