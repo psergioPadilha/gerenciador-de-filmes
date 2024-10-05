@@ -2,15 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { DetalhesFilme } from '../../models/detalhes-filme.model';
 import { ActivatedRoute } from '@angular/router';
 import { FilmeService } from '../../services/filme.service';
-import { formatDate, NgClass, NgIf } from '@angular/common';
+import { formatDate, NgClass, NgForOf, NgIf } from '@angular/common';
 import { GeneroFilme } from '../../models/genero-filme.model';
 import { VideoFilme } from '../../models/video-filme.model';
 import { DomSanitizer } from '@angular/platform-browser';
+import { MembroCredito } from '../../models/membro-credito.model';
+import { LocalStorageService } from '../../services/local-storage.service';
 
 @Component({
   selector: 'app-detalhes-filme',
   standalone: true,
-  imports: [NgIf, NgClass],
+  imports: [NgIf, NgClass, NgForOf],
   templateUrl: './detalhes-filme.component.html',
   styleUrl: './detalhes-filme.component.scss'
 })
@@ -21,6 +23,7 @@ export class DetalhesFilmeComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private filmeService: FilmeService,
+    private localStorageService: LocalStorageService,
     private domSanitizer: DomSanitizer,
   ){}
 
@@ -49,6 +52,20 @@ export class DetalhesFilmeComponent implements OnInit {
       return 'app-borda-nota-alta';
   }
 
+  public alterarStatusFavorito(id: number) {
+    if(!this.detalhes)
+      return;
+
+    if(this.localStorageService.favoritoJaExiste(id)) {
+      this.detalhes.favorito = false;
+      this.localStorageService.removerFavorito(id);
+    }
+    else {
+      this.detalhes.favorito = true;
+      this.localStorageService.salvarFavorito(id);
+    }
+  }
+
   private mapearDetalhesDoFilme(obj: any): DetalhesFilme {
     return {
       id: obj.id,
@@ -61,6 +78,17 @@ export class DetalhesFilmeComponent implements OnInit {
 
       generos: obj.genres.map(this.mapearGeneroFilme).map((g: GeneroFilme) => g.nome).join(', '),
       videos: obj.videos.results.map((v: any) => this.mapearVideoFilme(v)),
+      elencoPrincipal: obj.credits.cast.map(this.mapearElencoFilme),
+      favorito: this.localStorageService.favoritoJaExiste(obj.id),
+    };
+  }
+
+  private mapearElencoFilme(obj: any): MembroCredito {
+    return {
+      id: obj.id,
+      nome: obj.name,
+      papel: obj.character,
+      urlImage: 'https://image.tmdb.org/t/p/w300' + obj.profile_path,
     };
   }
 

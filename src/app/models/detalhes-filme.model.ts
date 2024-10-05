@@ -1,3 +1,4 @@
+import { MembroCredito } from "./membro-credito.model";
 import { VideoFilme } from "./video-filme.model";
 
 export interface DetalhesFilme {
@@ -12,4 +13,8 @@ export interface DetalhesFilme {
   generos: string;
 
   videos: VideoFilme[];
+
+  elencoPrincipal: MembroCredito[];
+
+  favorito: boolean;
 }

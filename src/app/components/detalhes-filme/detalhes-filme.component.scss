@@ -1,3 +1,20 @@
+#scrollbar-customizado {
+  &::-webkit-scrollbar {
+    width: 5px;
+    height: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #585858;
+    border-radius: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: #b1afaf;
+    border-radius: 5px;
+  }
+}
+
 .app-porcentagem-nota {
   width: 50px;
   height: 48px;

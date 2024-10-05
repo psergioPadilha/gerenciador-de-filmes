@@ -19,7 +19,7 @@ export class FilmeService {
   }
 
   public selecionarDetalhesDoFilme(id: any): Observable<any> {
-    const urlCompleto = `${this.urlApi}/${ id }?append_to_response=videos&language=pt-BR`;
+    const urlCompleto = `${this.urlApi}/${ id }?append_to_response=videos,credits&language=pt-BR`;
 
     return this.http.get<any>(urlCompleto, this.obterHeadersDeAutorizacao());
   }
