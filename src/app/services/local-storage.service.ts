@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { FilmeFavorito } from '../models/filme-favorito.model';
 
 @Injectable({
   providedIn: 'root'
@@ -6,17 +7,17 @@ import { Injectable } from '@angular/core';
 
 export class LocalStorageService {
   private readonly chave = 'topMovies:filmes';
-  private favoritos: number[];
+  private favoritos: FilmeFavorito[];
 
   constructor() {
     this.favoritos = this.obterFavoritos();
   }
 
-  public salvarFavorito(id: number): boolean {
-    if(this.favoritoJaExiste(id))
+  public salvarFavorito(filme: FilmeFavorito): boolean {
+    if(this.favoritoJaExiste(filme.id))
       return false;
 
-    this.favoritos.push(id);
+    this.favoritos.push(filme);
 
     this.salvarFavoritos();
 
@@ -27,7 +28,7 @@ export class LocalStorageService {
     if(!this.favoritoJaExiste(id))
       return false;
 
-    this.favoritos = this.favoritos.filter(f => f != id);
+    this.favoritos = this.favoritos.filter(f => f.id != id);
 
     this.salvarFavoritos();
 
@@ -35,7 +36,21 @@ export class LocalStorageService {
   }
 
   public favoritoJaExiste(id: number) {
-    return this.favoritos.includes(id);
+    return this.favoritos.some(f => f.id == id);
+  }
+
+  public obterFavoritos(): FilmeFavorito[] {
+    if(this.favoritos)
+      return this.favoritos;
+
+    const jsonString = localStorage.getItem(this.chave);
+
+    if(!jsonString)
+      return [];
+
+    const favoritos = JSON.parse(jsonString) as FilmeFavorito[];
+
+    return favoritos;
   }
 
   private salvarFavoritos() {
@@ -43,16 +58,4 @@ export class LocalStorageService {
 
     localStorage.setItem(this.chave, jsonString);
   }
-
-  private obterFavoritos(): number[] {
-    const jsonString = localStorage.getItem(this.chave);
-
-    if(!jsonString)
-      return [];
-
-    const favoritos = JSON.parse(jsonString) as number[];
-
-    return favoritos;
-  }
-
 }

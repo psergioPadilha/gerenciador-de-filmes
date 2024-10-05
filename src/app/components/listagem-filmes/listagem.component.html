@@ -1,6 +1,8 @@
-<h3>Filmes Populares</h3>
+<app-filmes-favoritos [filmes]="filmesFavoritos"></app-filmes-favoritos>
 
-<section class="row justify-content-start g-3 mt-3">
+<h3 class="mt-4">Filmes Populares</h3>
+
+<section class="row justify-content-start g-3 mt-8">
   <div *ngFor="let filme of filmes" class="col-md-4 col-lg-2">
     <div class="app-card-filme card rounded-3 h-100">
 

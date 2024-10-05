@@ -8,6 +8,7 @@ import { VideoFilme } from '../../models/video-filme.model';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MembroCredito } from '../../models/membro-credito.model';
 import { LocalStorageService } from '../../services/local-storage.service';
+import { FilmeFavorito } from '../../models/filme-favorito.model';
 
 @Component({
   selector: 'app-detalhes-filme',
@@ -62,7 +63,14 @@ export class DetalhesFilmeComponent implements OnInit {
     }
     else {
       this.detalhes.favorito = true;
-      this.localStorageService.salvarFavorito(id);
+
+      const novoFavorito: FilmeFavorito = {
+        id: id,
+        titulo: this.detalhes.titulo,
+        urlImagem: this.detalhes.urlPoster
+      };
+
+      this.localStorageService.salvarFavorito(novoFavorito);
     }
   }
 
