@@ -1,5 +1,6 @@
-@import "bootstrap";
+@import "bootstrap/scss/bootstrap";
 @import "bootstrap-icons";
+@import "ngx-toastr/toastr-bs5-alert";
 
 .app-card-filme {
   transition: color, box-shadow 200ms ease-in-out;

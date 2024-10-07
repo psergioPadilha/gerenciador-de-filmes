@@ -1,0 +1,23 @@
+<div class="app-card-filme card rounded-3 h-100">
+  <a
+    class="stretched-link"
+    [attr.aria-label]="'Detalhes de ' + filme.titulo"
+    [routerLink]="['/filmes', filme.id]"
+  ></a>
+
+  <img class="card-img-top" [src]="filme.urlImagem" alt="{{ filme.titulo }}" />
+
+  <div class="card-body px-2">
+    <app-icone-avaliacao-usuarios
+      class="app-icone-absoluto"
+      [avaliacao]="filme.porcentagemNota"
+      [tamanho]="40"
+    ></app-icone-avaliacao-usuarios>
+
+    <p class="app-titulo-card card-title fw-semibold mb-0">
+      {{ filme.titulo }}
+    </p>
+
+    <small class="card-subtitle">{{ filme.lancamento }}</small>
+  </div>
+</div>

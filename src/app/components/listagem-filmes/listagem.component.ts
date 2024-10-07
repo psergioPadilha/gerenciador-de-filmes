@@ -6,13 +6,15 @@ import { RouterLink } from '@angular/router';
 import { FilmeFavorito } from '../../models/filme-favorito.model';
 import { LocalStorageService } from '../../services/local-storage.service';
 import { FilmesFavoritosComponent } from "../filmes-favoritos/filmes-favoritos.component";
+import { BarraBuscaComponent } from "../barra-busca/barra-busca.component";
+import { CardFilmeComponent } from '../../shared/card-filme/card-filme.component';
+import { BotaoPaginacaoComponent } from "../../shared/botao-paginacao/botao-paginacao.component";
 
 @Component({
   selector: 'app-listagem',
   standalone: true,
-  imports: [NgForOf, NgClass, NgIf, RouterLink, FilmesFavoritosComponent],
-  templateUrl: './listagem.component.html',
-  styleUrl: './listagem.component.scss'
+  imports: [NgForOf, NgClass, NgIf, RouterLink, FilmesFavoritosComponent, BarraBuscaComponent, CardFilmeComponent, BotaoPaginacaoComponent],
+  templateUrl: './listagem.component.html'
 })
 
 export class ListagemFilmesComponent implements OnInit {
@@ -43,7 +45,7 @@ export class ListagemFilmesComponent implements OnInit {
       // spread syntax = sintaxe de spread - os três pontos inseri um a um os elemntos no array
       this.filmes.push(...filmesMapeados);
 
-      this.pagina ++;
+      this.pagina + 1;
 
       this.carregandoListagem = false;
     });
@@ -68,7 +70,7 @@ export class ListagemFilmesComponent implements OnInit {
       titulo: obj.title,
       lancamento: formatDate(obj.release_date, 'mediumDate', 'pt-BR'),
       urlImagem: 'https://image.tmdb.org/t/p/w300/' + obj.poster_path,
-      porcentagemNota: (obj.vote_average * 10).toFixed(0),
+      porcentagemNota: Number((obj.vote_average * 10).toFixed(0))
     }
   }
 }

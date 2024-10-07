@@ -1,0 +1,20 @@
+.app-card-filme {
+  transition: color, box-shadow 200ms ease-in-out;
+
+  &:hover {
+    -webkit-box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.75);
+
+    .app-titulo-card {
+      color: #0b5ed7;
+    }
+  }
+}
+
+.app-icone-absoluto {
+  position: absolute;
+
+  top: 1%;
+  left: 1%;
+}

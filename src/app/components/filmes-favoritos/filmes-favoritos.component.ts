@@ -8,8 +8,8 @@ import { RouterLink } from '@angular/router';
   standalone: true,
   imports: [NgForOf, RouterLink],
   templateUrl: './filmes-favoritos.component.html',
-  styleUrl: './filmes-favoritos.component.scss'
 })
+
 export class FilmesFavoritosComponent {
   @Input({ required: true }) filmes!: FilmeFavorito[];
 }

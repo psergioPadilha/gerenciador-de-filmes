@@ -1,5 +1,5 @@
-<div *ngIf="detalhes">
-  <div>
+<div *ngIf="detalhes" class="app-banner-fundo" [style.background-image]="'url(' + detalhes.urlFundo +')'">
+  <div class="app-overlay-banner">
     <main class="container py-5">
       <section aria-label="Detalhes do Filme" class="row g-3">
 

@@ -1,41 +1,24 @@
-<app-filmes-favoritos [filmes]="filmesFavoritos"></app-filmes-favoritos>
+<app-barra-busca></app-barra-busca>
 
-<h3 class="mt-4">Filmes Populares</h3>
+<div class="container my-4">
+  <app-filmes-favoritos *ngIf="filmesFavoritos.length > 0" [filmes]="filmesFavoritos"></app-filmes-favoritos>
 
-<section class="row justify-content-start g-3 mt-8">
-  <div *ngFor="let filme of filmes" class="col-md-4 col-lg-2">
-    <div class="app-card-filme card rounded-3 h-100">
+  <h3 class="mt-4">Filmes Populares</h3>
 
-      <a class="stretched-link" [routerLink]="['/filmes', filme.id]"></a>
-
-      <img class="card-img-top" [src]="filme.urlImagem" alt="Card do Filme {{filme.titulo}}" />
-
-      <div class="card-body px-2">
-
-        <span [ngClass]="mapearCorDaNota(filme.porcentagemNota)" class="app-porcentagem-nota rounded-circle py-1 px-2">
-            <span class="app-valor-porcentagem fw-semibold">{{ filme.porcentagemNota }}</span>
-            <i class="app-icone-porcentagem bi bi-percent"></i>
-        </span>
-
-        <p class="app-titulo-card card-title text-center fw-semibold mb-0">{{ filme.titulo }}</p>
-        <!-- <p class="text-center">
-          <small class="card-subtitle text-secondary">{{ filme.lancamento }}</small>
-        </p> -->
-
-        <small class="card-subtitulo text-secondary">
-          <p class="app-subtitulo-card text-center">{{ filme.lancamento }}</p>
-        </small>
-
-      </div>
+  <section class="row justify-content-start g-3 mt-3">
+    <div *ngFor="let filme of filmes" class="col-4 col-lg-2">
+      <app-card-filme [filme]="filme"></app-card-filme>
     </div>
-  </div>
-</section>
+  </section>
 
-<section *ngIf="!carregandoListagem" aria-label="Paginação" class="row justify-content-center mt-4">
-  <button
-    (click)="buscarFilmesPopulares()"
-    class="app-botao-gradiente col-md-6 col-lg-4 btn btn-lg fw-semibold rounded-pill"
+  <section
+    *ngIf="!carregandoListagem"
+    aria-label="Paginação"
+    class="row justify-content-center mt-4"
   >
-    Mais Resultados
-  </button>
-</section>
+    <app-botao-paginacao
+      (paginacaoAcionada)="buscarFilmesPopulares()"
+      class="col-md-6 col-lg-4 btn btn-lg fw-semibold rounded-pill"
+    ></app-botao-paginacao>
+  </section>
+</div>

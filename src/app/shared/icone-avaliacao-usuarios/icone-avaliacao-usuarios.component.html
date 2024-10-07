@@ -1,0 +1,12 @@
+<span
+  [ngClass]="mapearCorDaNota(avaliacao)"
+  [style.width]="tamanho + 'px'"
+  [style.height]="tamanho - 2 + 'px'"
+  class="app-porcentagem-nota borda-nota-media d-flex justify-content-center align-items-center rounded-circle"
+>
+  <span
+    [style.font-size]="tamanho / 2.3 + 'px'"
+    class="app-valor-porcentagem fw-semibold"
+    >{{ avaliacao.toFixed(0) }}</span
+  >
+</span>

@@ -1,0 +1,12 @@
+.app-porcentagem-nota {
+  background-color: #081c22;
+  color: #f3f3f3;
+
+  .app-valor-porcentagem {
+    &::after {
+      content: "%";
+
+      font-size: 9px;
+    }
+  }
+}
