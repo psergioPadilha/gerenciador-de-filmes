@@ -123,6 +123,13 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "baseHref": "",
+            "repo": "https://github.com/psergioPadilha/gerenciador-de-filmes.git"
+          }
         }
       }
     }
