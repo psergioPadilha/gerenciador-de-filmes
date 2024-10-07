@@ -5,3 +5,27 @@
 .app-titulo-navbar {
   color: #d756ac;
 }
+
+.app-botao-navbar {
+  color: #ffffff;
+
+  min-width: 130px;
+
+  text-align: center;
+  font-size: 17px;
+
+  &::after {
+    content: "";
+
+    width: 0px;
+    height: 1px;
+
+    display: block;
+    background: white;
+    transition: 300ms ease-in-out;
+  }
+
+  &:hover::after {
+    width: 100%;
+  }
+}

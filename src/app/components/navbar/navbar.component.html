@@ -15,8 +15,18 @@
     >
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav ms-auto">
+    <div
+      [ngClass]="{ show: colapsarNavbar }"
+      class="collapse navbar-collapse"
+      id="collapsibleMenu"
+    >
+      <div class="navbar-nav mt-4 mt-lg-0 ms-lg-auto">
+        <a
+          class="app-botao-navbar nav-link fw-semibold"
+          aria-current="page"
+          routerLink="/filmes"
+          >Filmes</a
+        >
       </div>
     </div>
   </div>
