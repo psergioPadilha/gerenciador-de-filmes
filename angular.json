@@ -127,7 +127,7 @@
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
           "options": {
-            "baseHref": "",
+            "baseHref": "https://psergiopadilha.github.io/gerenciador-de-filmes/",
             "repo": "https://github.com/psergioPadilha/gerenciador-de-filmes.git"
           }
         }
